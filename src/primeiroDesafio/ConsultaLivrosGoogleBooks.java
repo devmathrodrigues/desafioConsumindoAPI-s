@@ -1,8 +1,8 @@
 /*
-Crie um programa em Java que utilize as classes HttpClient, HttpRequest e HttpResponse para
-fazer uma consulta à API do Google Books. Solicite ao usuário que insira o título de um livro,
-e exiba as informações disponíveis sobre o livro retornado pela API.
-*/
+Crie um programa em Java que utilize as classes HttpClient, HttpRequest e HttpResponse para fazer
+uma consulta à API do Google Books. Solicite ao usuário que insira o título de um livro, e exiba as
+informações disponíveis sobre o livro retornado pela API.
+ */
 
 package primeiroDesafio;
 
@@ -14,14 +14,12 @@ import java.net.http.HttpResponse;
 import java.util.Scanner;
 
 public class ConsultaLivrosGoogleBooks {
-
     public static void main(String[] args) throws IOException, InterruptedException {
         Scanner leitura = new Scanner(System.in);
-        System.out.println("Digite o titulo do livro para a busca: ");
+        System.out.println("Digite o título do livro para a busca: ");
         var tituloLivro = leitura.nextLine();
 
-        String chave = "AIzaSyDNXPSI1VXdmvo_hHGNETBx4Kc-mJ7vP8c";
-        String endereco = "https://www.googleapis.com/books/v1/volumes?q=" + tituloLivro + "&key=" + chave;
+        String endereco = "https://www.googleapis.com/books/v1/volumes?q=" + tituloLivro.replace(" ", "+");
 
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder().uri(URI.create(endereco)).build();
@@ -30,4 +28,5 @@ public class ConsultaLivrosGoogleBooks {
         System.out.println(response.body());
     }
 }
+
 
