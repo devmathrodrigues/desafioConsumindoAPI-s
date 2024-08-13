@@ -1,4 +1,4 @@
-package primeiroDesafio;
+package segundoModulo.primeiroDesafio;
 
 public record Pessoa(String nome, int idade, String cidade) {
 }

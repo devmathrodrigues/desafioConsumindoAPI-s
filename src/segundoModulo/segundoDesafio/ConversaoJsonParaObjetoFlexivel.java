@@ -4,7 +4,7 @@ alguns campos estiverem ausentes ou se houver campos adicionais não representad
 Consulte a documentação da biblioteca Gson para flexibilizar a conversão.
  */
 
-package segundoDesafio;
+package segundoModulo.segundoDesafio;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 

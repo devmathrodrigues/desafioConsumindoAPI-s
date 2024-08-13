@@ -4,7 +4,7 @@ representando a editora. Em seguida, implemente um programa que utiliza a biblio
 para converter um JSON aninhado representando um livro em um objeto do tipo Livro.
  */
 
-package terceiroDesafio;
+package segundoModulo.terceiroDesafio;
 
 import com.google.gson.Gson;
 
@@ -15,7 +15,7 @@ public class ConversaoJsonAninhadoParaObjeto {
                 ",\"editora\":{\"nome\":\"TechBooks\",\"cidade\":\"São Paulo\"}}";
 
         Gson gson = new Gson();
-        Livro livro = gson.fromJson(jsonLivro, Livro.class);
+        terceiroDesafio.Livro livro = gson.fromJson(jsonLivro, terceiroDesafio.Livro.class);
 
         System.out.println("Objeto Livro: " + livro);
     }
