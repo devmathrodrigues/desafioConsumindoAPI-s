@@ -1,10 +1,10 @@
 /*
-Crie um programa Java que utiliza as classes HttpClient, HttpRequest e HttpResponse
-para fazer uma consulta à API CoinGecko e exiba a cotação atual de uma criptomoeda
-escolhida pelo usuário.
+Crie um programa em Java que utilize as classes HttpClient, HttpRequest e HttpResponse para fazer
+uma consulta à API do Google Books. Solicite ao usuário que insira o título de um livro, e exiba as
+informações disponíveis sobre o livro retornado pela API.
  */
 
-package segundoDesafio;
+package primeiroModulo.primeiroDesafio;
 
 import java.io.IOException;
 import java.net.URI;
@@ -13,13 +13,13 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.Scanner;
 
-public class ConsultaCotacaoCripto {
+public class ConsultaLivrosGoogleBooks {
     public static void main(String[] args) throws IOException, InterruptedException {
         Scanner leitura = new Scanner(System.in);
-        System.out.println("Digite o nome da criptomoeda para a cotação (por exemplo, bitcoin): ");
-        var criptoNome = leitura.nextLine();
+        System.out.println("Digite o título do livro para a busca: ");
+        var tituloLivro = leitura.nextLine();
 
-        String endereco = "https://api.coingecko.com/api/v3/simple/price?ids=" + criptoNome + "&vs_currencies=usd";
+        String endereco = "https://www.googleapis.com/books/v1/volumes?q=" + tituloLivro.replace(" ", "+");
 
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder().uri(URI.create(endereco)).build();
@@ -28,3 +28,5 @@ public class ConsultaCotacaoCripto {
         System.out.println(response.body());
     }
 }
+
+

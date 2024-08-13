@@ -1,10 +1,10 @@
 /*
-Crie um programa Java que faça uma consulta à API do TheMealDB utilizando as classes
-HttpClient, HttpRequeste HttpResponse. Solicite ao usuário que insira uma letra de uma
-receita e exiba as informações disponíveis sobre essas receitas.
-*/
+Crie um programa Java que utiliza as classes HttpClient, HttpRequest e HttpResponse
+para fazer uma consulta à API CoinGecko e exiba a cotação atual de uma criptomoeda
+escolhida pelo usuário.
+ */
 
-package terceiroDesafio;
+package primeiroModulo.segundoDesafio;
 
 import java.io.IOException;
 import java.net.URI;
@@ -13,13 +13,13 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.Scanner;
 
-public class ConsultaReceitaTheMealDB {
+public class ConsultaCotacaoCripto {
     public static void main(String[] args) throws IOException, InterruptedException {
         Scanner leitura = new Scanner(System.in);
-        System.out.println("Digite a primeira letra da receita para a busca: ");
-        var primeiraLetraDaReceita = leitura.nextLine();
+        System.out.println("Digite o nome da criptomoeda para a cotação (por exemplo, bitcoin): ");
+        var criptoNome = leitura.nextLine();
 
-        String endereco = "https://www.themealdb.com/api/json/v1/1/search.php?f=" + primeiraLetraDaReceita;
+        String endereco = "https://api.coingecko.com/api/v3/simple/price?ids=" + criptoNome + "&vs_currencies=usd";
 
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder().uri(URI.create(endereco)).build();

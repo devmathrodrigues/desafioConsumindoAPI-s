@@ -1,10 +1,10 @@
 /*
-Crie um programa em Java que utilize as classes HttpClient, HttpRequest e HttpResponse para fazer
-uma consulta à API do Google Books. Solicite ao usuário que insira o título de um livro, e exiba as
-informações disponíveis sobre o livro retornado pela API.
- */
+Crie um programa Java que faça uma consulta à API do TheMealDB utilizando as classes
+HttpClient, HttpRequeste HttpResponse. Solicite ao usuário que insira uma letra de uma
+receita e exiba as informações disponíveis sobre essas receitas.
+*/
 
-package primeiroDesafio;
+package primeiroModulo.terceiroDesafio;
 
 import java.io.IOException;
 import java.net.URI;
@@ -13,13 +13,13 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.Scanner;
 
-public class ConsultaLivrosGoogleBooks {
+public class ConsultaReceitaTheMealDB {
     public static void main(String[] args) throws IOException, InterruptedException {
         Scanner leitura = new Scanner(System.in);
-        System.out.println("Digite o título do livro para a busca: ");
-        var tituloLivro = leitura.nextLine();
+        System.out.println("Digite a primeira letra da receita para a busca: ");
+        var primeiraLetraDaReceita = leitura.nextLine();
 
-        String endereco = "https://www.googleapis.com/books/v1/volumes?q=" + tituloLivro.replace(" ", "+");
+        String endereco = "https://www.themealdb.com/api/json/v1/1/search.php?f=" + primeiraLetraDaReceita;
 
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder().uri(URI.create(endereco)).build();
@@ -28,5 +28,3 @@ public class ConsultaLivrosGoogleBooks {
         System.out.println(response.body());
     }
 }
-
-
