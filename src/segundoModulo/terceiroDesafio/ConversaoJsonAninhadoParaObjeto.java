@@ -15,7 +15,7 @@ public class ConversaoJsonAninhadoParaObjeto {
                 ",\"editora\":{\"nome\":\"TechBooks\",\"cidade\":\"São Paulo\"}}";
 
         Gson gson = new Gson();
-        terceiroDesafio.Livro livro = gson.fromJson(jsonLivro, terceiroDesafio.Livro.class);
+        terceiroModulo.terceiroDesafio.Livro livro = gson.fromJson(jsonLivro, terceiroModulo.terceiroDesafio.Livro.class);
 
         System.out.println("Objeto Livro: " + livro);
     }
