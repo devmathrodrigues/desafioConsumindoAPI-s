@@ -12,16 +12,18 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Scanner;
+
 public class ConsultaGitHub {
     public static void main(String[] args) {
-        try {
-            //Nome de usuário a ser consultado
-            String nomeUsuario = "octocat";  // Altere para o nome de usuário desejado
+        try (Scanner scanner = new Scanner(System.in)) {
+            System.out.print("Digite o nome de usuário do GitHub: ");
+            String nomeUsuario = scanner.nextLine(); //Captura a entrada do usuário e armazenando ela.
 
-            //Consulta a API do GitHub
+            //Chamando o método consultarUsuarioGitHub e passando o nomeUsuário que foi capturado
+            //como argumento e então o valor retornado é armazenado dentro da váriavel resultado.
             String resultado = consultarUsuarioGitHub(nomeUsuario);
 
-            //Exibe o resultado
             System.out.println("Informações do usuário:");
             System.out.println(resultado);
         } catch (ErroConsultaGitHubException e) {
@@ -33,11 +35,9 @@ public class ConsultaGitHub {
         }
     }
 
-    //Método para consultar a API do GitHub
     public static String consultarUsuarioGitHub(String nomeUsuario) {
         String url = "https://api.github.com/users/" + nomeUsuario;
         try {
-            //Cria a URL e a conexão
             URL obj = new URL(url);
             HttpURLConnection con = (HttpURLConnection) obj.openConnection();
             con.setRequestMethod("GET");
@@ -45,7 +45,7 @@ public class ConsultaGitHub {
             //Obtém o código de resposta HTTP
             int responseCode = con.getResponseCode();
             if (responseCode == HttpURLConnection.HTTP_NOT_FOUND) {
-                // Lança exceção personalizada se o usuário não for encontrado
+                //Mostra a exceção personalizada se o usuário não for encontrado
                 throw new ErroConsultaGitHubException("Usuário não encontrado.");
             }
 
